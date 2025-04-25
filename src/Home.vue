@@ -21,7 +21,7 @@
         <span>{{ fileName }}</span>
       </div>
     </div>
-    <el-button style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);" @click="test">悬浮按钮</el-button>
+    <el-button style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);" @click="verifyCode">悬浮按钮</el-button>
   </div>
 </template>
 
@@ -81,6 +81,21 @@ export default {
       });
     };
 
+    const verifyCode = async (email:string,code:string) => {
+      try {
+        // email="1941456753@qq.com"
+        // code="994772"
+        const requestBody = {
+            email: email,
+            code: code
+        };
+        const response = await request.post('/verifyCode', requestBody);
+        console.log('Verify code response:', response);
+      } catch (error) {
+        console.error('Verify code error:', error);
+      }
+    };
+
     return {
       previewImage,
       showCloseIcon,
@@ -89,7 +104,8 @@ export default {
       fileName,
       handleFileChange,
       clearPreviewImage,
-      test
+      test,
+      verifyCode
     };
   }
 }
