@@ -1,10 +1,11 @@
+
 <template>
-  <Home />
-  <!-- 这里可以添加App.vue的默认内容 -->
+<div>
+    <router-view />  <!-- 必须要有，否则 Vue 无法正确渲染当前路由的组件 -->
+  </div>
 </template>
 
 <script setup lang="ts">
-import Home from './Home.vue'
 // 这里可以添加App.vue的默认脚本内容
 </script>
 
