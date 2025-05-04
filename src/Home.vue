@@ -23,7 +23,7 @@
           <span>{{ fileName }}</span>
         </div>
       </div>
-      <el-button style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);" @click="verifyCode">悬浮按钮</el-button>
+      <el-button style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);" @click="">悬浮按钮</el-button>
     </div>
   </div>
 </template>
@@ -76,26 +76,7 @@ const clearPreviewImage = () => {
   hasPreviewImage.value = false;
 };
 
-const test = async () => {
-  request.get('/hello').then(response => {
-    console.log(response);
-  });
-};
 
-const verifyCode = async (email:string,code:string) => {
-  try {
-    // email="1941456753@qq.com"
-    // code="994772"
-    const requestBody = {
-        email: email,
-        code: code
-    };
-    const response = await request.post('/verifyCode', requestBody);
-    console.log('Verify code response:', response);
-  } catch (error) {
-    console.error('Verify code error:', error);
-  }
-};
 
 </script>
 

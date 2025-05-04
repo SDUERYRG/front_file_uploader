@@ -10,7 +10,8 @@
         <el-input v-model="password" type="password"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="handleLogin">登录</el-button>
+        <el-button type="primary" @click="handleLogin" style="width: 47%;">登录</el-button>
+        <el-button type="primary" @click="goToRegister" style="width: 47%;">注册</el-button>
       </el-form-item>
     </el-form>
     </div>
@@ -20,7 +21,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-
+import request from './api/request';
 const username = ref('');
 const password = ref('');
 const router = useRouter();
@@ -28,6 +29,12 @@ const router = useRouter();
 const handleLogin = () => {
   router.push('/home');
 };
+
+const goToRegister = () => {
+  router.push('/register'); 
+}
+
+
 </script>
 
 <style scoped>

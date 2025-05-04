@@ -3,14 +3,18 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 
 const routes = [
-    {
+  {
         path: "/home",
         component: () => import("../Home.vue"), // 导入 Home 组件
-    },
+  },
   {
     path: '/',
     component: () => import('../Login.vue')
   },
+  {
+    path: '/register',
+    component: () => import('../Register.vue') 
+  }
 ];
 
 //路由创建
