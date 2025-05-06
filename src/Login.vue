@@ -26,8 +26,25 @@ const username = ref('');
 const password = ref('');
 const router = useRouter();
 
-const handleLogin = () => {
-  router.push('/home');
+const handleLogin = async () => {
+  try {
+    const user = {
+      username: username.value,
+      password: password.value
+    };
+    const response = await request.post('/login', user);
+    if (response.data.status == true) {
+      // 假设成功状态码是 200
+      console.log('登录成功:', response);
+      localStorage.setItem('token', response.data.token);
+      router.push('/home');
+    } else {
+      alert('登录失败：' + response.data.message);
+    }
+  } catch (error) {
+    console.error('登录出错:', error);
+    alert('登录出错，请稍后再试');
+  }
 };
 
 const goToRegister = () => {
