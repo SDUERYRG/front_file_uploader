@@ -23,7 +23,7 @@
           <span>{{ fileName }}</span>
         </div>
       </div>
-      <el-button style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);" @click="">悬浮按钮</el-button>
+      <el-button style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);" @click="uploadFile">悬浮按钮</el-button>
     </div>
   </div>
 </template>
@@ -37,9 +37,11 @@ const showCloseIcon = ref(false);
 const hasPreviewImage = ref(false);
 const previewFile = ref('');
 const fileName = ref('');
+const myFile = ref<File | null>(null);
 
 // 仅仅在选择文件后回显预览图片，不进行上传操作，response我不知道为什么写
 const handleFileChange = async (response: any, file: any) => {
+  myFile.value = file.raw;
   console.log(response);
   const fileType = file.raw.name.split('.').pop()?.toUpperCase(); // 获取文件类型
   console.log(fileType);
@@ -76,7 +78,39 @@ const clearPreviewImage = () => {
   hasPreviewImage.value = false;
 };
 
+const getFileCount = async () => {
+  try {
+    const response = await request.get('/getFileCount');
+    console.log(response.data); 
+    return Number(response.data);
+  } catch (error) {
+    console.error('Error fetching file count:', error);
+  }
+}
 
+const uploadFile = async () => {
+  const file = myFile.value;
+  try {
+    const response = await getFileCount(); 
+    const fileCount = response || 0;
+    const fileId = fileCount + 1;
+    console.log('生成的文件ID:', fileId);
+    const formData = new FormData();
+    if (file) {
+      formData.append('file', file);
+    } else {
+      console.error('No file selected');
+      return;
+    }
+    formData.append('fileId', fileId.toString()); 
+    formData.append('userId', localStorage.getItem('userId') || '');
+
+    const uploadResponse = await request.post('/upload', formData)
+    console.log(uploadResponse);
+  } catch (error) {
+    console.error('Error uploading file:', error); 
+  }
+}
 
 </script>
 

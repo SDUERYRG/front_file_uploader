@@ -37,6 +37,8 @@ const handleLogin = async () => {
       // 假设成功状态码是 200
       console.log('登录成功:', response);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('userId', response.data.data.id);
+      console.log('userId: ' + localStorage.getItem('userId'));
       router.push('/home');
     } else {
       alert('登录失败：' + response.data.message);
