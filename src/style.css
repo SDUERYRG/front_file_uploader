@@ -24,8 +24,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex; */ /* 移除默认的 flex 布局 */
+  /* place-items: center; */ /* 移除垂直居中对齐 */
+  width: 100%;
+  overflow-x: hidden; /* 防止水平滚动条出现 */
 }
 
 h1 {
@@ -57,9 +59,9 @@ button:focus-visible {
 }
 
 #app {
-  /* max-width: 1280px; */
+  /* max-width: 1280px; */ /* 注释掉最大宽度限制 */
   margin: 0 auto;
-  width: 100vh;
+  width: 100%; /* 设置宽度为 100% */
   /* padding: 2rem; */
   text-align: center;
 }

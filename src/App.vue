@@ -1,7 +1,7 @@
 
 <template>
 <div>
-    <router-view />  <!-- 必须要有，否则 Vue 无法正确渲染当前路由的组件 -->
+  <router-view></router-view>   <!-- 必须要有，否则 Vue 无法正确渲染当前路由的组件 -->
   </div>
 </template>
 

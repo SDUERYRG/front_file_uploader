@@ -1,25 +1,31 @@
 <template>
-  <div class="login-container">
-    <div class="login-box">
-        <h2>注册</h2>
-    <el-form>
-      <el-form-item label="用户名（邮箱）">
-        <el-input v-model="username"></el-input>
-      </el-form-item>
-      <el-form-item label="验证码">
-        <el-input v-model="verificationCode" style="width: 50%;margin-right: 5%;"></el-input>
-        <el-button type="primary" @click="sendVerificationCode">发送验证码</el-button>
-      </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="password" type="password"></el-input>
-      </el-form-item>
-      <el-form-item label="确认密码">
-        <el-input v-model="confirmPassword" type="password"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="verifyCode(username,verificationCode)" style="width: 100%;">注册</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="container">
+    <div style="width: 600px; padding: 30px; background-color: #fdf2d4; border-radius: 5px;">
+      <div style="text-align: center; font-size: 20px; margin-bottom: 20px; color: #f9bd6f">欢迎加入文件共享</div>
+      <el-form>
+        <el-form-item prop="username">
+          <el-input prefix-icon="el-icon-user" placeholder="请输入用户名（邮箱）" v-model="username"></el-input>
+        </el-form-item>
+        <el-form-item prop="verificationCode">
+          <el-input prefix-icon="el-icon-user" placeholder="请输入验证码" v-model="verificationCode"></el-input>
+          <el-button type="primary" @click="sendVerificationCode">发送验证码</el-button>
+        </el-form-item>
+        <el-form-item prop="password">
+          <el-input prefix-icon="el-icon-lock" placeholder="请输入密码" show-password  v-model="password"></el-input>
+        </el-form-item>
+        <el-form-item prop="confirmPass">
+          <el-input prefix-icon="el-icon-lock" placeholder="请确认密码" show-password  v-model="confirmPassword"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button style="width: 100%; background-color: #fde4af; border-color: #fbd28c; color: white" @click="verifyCode(username,verificationCode)">注 册</el-button>
+        </el-form-item>
+        <div style="display: flex; align-items: center">
+          <div style="flex: 1"></div>
+          <div style="flex: 1; text-align: right; color: #f9bd6f">
+            已有账号？请 <a href="/">登录</a>
+          </div>
+        </div>
+      </el-form>
     </div>
   </div>
 </template>
@@ -90,20 +96,19 @@ const handleRegister = async () => {
 </script>
 
 <style scoped>
-/* 可在此添加样式 */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
   height: 100vh;
-  width: 100vh; 
-  background-color: #f0f2f5;
+  overflow: hidden;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
 }
-.login-box {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+a{
+  color:#f2913d
+}
+a:hover{
+  color:#f2ddb6
 }
 </style>

@@ -6,7 +6,7 @@
         <el-upload
           v-if="!hasPreviewImage && !previewFile"
           drag
-          action="http://localhost:8080/helloworld"
+          action="http://localhost:8081/helloworld"
           :on-success="handleFileChange"
           style="width: 60%;"
           >
